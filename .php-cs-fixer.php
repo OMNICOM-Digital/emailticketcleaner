@@ -10,7 +10,7 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
-    ->exclude(['vendor', 'node_modules', 'tests'])
+    ->exclude(['vendor', 'node_modules'])
     ->name('*.php');
 
 return (new Config())

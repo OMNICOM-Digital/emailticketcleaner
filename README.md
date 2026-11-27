@@ -104,9 +104,8 @@ More detail on how it works: [docs/technical-overview.md](docs/technical-overvie
 
 The plugin source is in this repository (`setup.php`, `hook.php`, `src/`, `front/`, `templates/`); it is the
 folder GLPI expects as `<glpi>/plugins/emailticketcleaner`. `main` can contain changes that are not released
-yet, so for installation use the Marketplace or the zip from Releases. Offline tests are in `tests/` (not
-shipped in the release zip). Issues and pull requests are welcome; for security problems follow
-[SECURITY.md](SECURITY.md).
+yet, so for installation use the Marketplace or the zip from Releases. Issues and pull requests are welcome; for
+security problems follow [SECURITY.md](SECURITY.md).
 
 ## Security
 

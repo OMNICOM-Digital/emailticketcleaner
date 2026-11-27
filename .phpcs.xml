@@ -3,8 +3,6 @@
     <description>PSR-12 for the Email Ticket Cleaner plugin</description>
     <file>.</file>
     <exclude-pattern>/vendor/</exclude-pattern>
-    <!-- tests/ hold multi-class stub harnesses and are not shipped -->
-    <exclude-pattern>/tests/</exclude-pattern>
     <arg name="extensions" value="php"/>
     <arg value="p"/>
     <rule ref="PSR12">
