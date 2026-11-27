@@ -1,0 +1,69 @@
+{#
+ # -------------------------------------------------------------------------
+ # Email Ticket Cleaner plugin for GLPI
+ # -------------------------------------------------------------------------
+ # @copyright Copyright (C) 2026 OMNICOM s.r.o.
+ # @license   GPL-3.0-or-later https://www.gnu.org/licenses/gpl-3.0.html
+ # -------------------------------------------------------------------------
+ #}
+
+{# Macros used exist with the same signature on 11.0/bugfixes and 12.0/bugfixes:
+   largeTitle, sliderField, textareaField, numberField (templates/components/form/fields_macros.html.twig). #}
+{% import 'components/form/fields_macros.html.twig' as fields %}
+
+{% set disabled = not can_edit %}
+{% set domain = 'emailticketcleaner' %}
+
+<div class="container-fluid">
+    <form method="post" action="">
+        {# Required on GLPI 11 (token check); ignored by GLPI 12, which checks request headers. #}
+        <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}" />
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="ti ti-mail-cog me-2" aria-hidden="true"></i>{{ __('Email Ticket Cleaner', domain) }}
+                </h2>
+            </div>
+            <div class="card-body row">
+                <p class="text-muted">
+                    {{ __('Cleans emails imported by the mail collector before they become tickets or follow-ups. Tickets and follow-ups created in GLPI, and later edits, are never changed. If cleaning fails or would leave too little text, the original email is kept.', domain) }}
+                </p>
+
+                {{ fields.largeTitle(__('Features', domain), 'ti ti-toggle-right') }}
+                {{ fields.sliderField('signature_markers_enabled', settings.signature_markers_enabled, __('Remove signatures', domain), {disabled: disabled}) }}
+                {{ fields.sliderField('quote_markers_enabled', settings.quote_markers_enabled, __('Remove quoted replies and forwards', domain), {disabled: disabled}) }}
+                {{ fields.sliderField('block_markers_enabled', settings.block_markers_enabled, __('Remove banners and other marked blocks', domain), {disabled: disabled}) }}
+                {{ fields.sliderField('signoff_rules_enabled', settings.signoff_rules_enabled, __('Cut at sign-off phrases', domain), {disabled: disabled}) }}
+                {{ fields.sliderField('formatting_strip_enabled', settings.formatting_strip_enabled, __('Remove formatting', domain), {disabled: disabled}) }}
+                {{ fields.sliderField('drop_cut_images_enabled', settings.drop_cut_images_enabled, __('Do not save images from removed parts', domain), {disabled: disabled}) }}
+
+                {{ fields.largeTitle(__('What counts as a signature or quote', domain), 'ti ti-list') }}
+                {{ fields.textareaField('signature_markers', settings.signature_markers, __('Signature markers (one per line: #id or .class)', domain), {disabled: disabled, rows: 6}) }}
+                {{ fields.textareaField('quote_markers', settings.quote_markers, __('Quote markers (one per line: #id, .class or tag[attribute=value])', domain), {disabled: disabled, rows: 6}) }}
+                {{ fields.textareaField('block_markers', settings.block_markers, __('Blocks removed on their own (one per line, e.g. table:has(a[href*=text]))', domain), {disabled: disabled, rows: 3}) }}
+                {{ fields.textareaField('signoff_phrases', settings.signoff_phrases, __('Sign-off phrases (one per line; the message is cut from a phrase on its own line)', domain), {disabled: disabled, rows: 8}) }}
+
+                {{ fields.largeTitle(__('Safety', domain), 'ti ti-shield-check') }}
+                {{ fields.numberField('min_remaining_chars', settings.min_remaining_chars, __('Keep the original if fewer characters of text remain', domain), {disabled: disabled, min: 1, max: 1000}) }}
+
+                {{ fields.largeTitle(__('Regular expression rules', domain), 'ti ti-regex') }}
+                <div class="col-12 mb-3">
+                    <a class="btn btn-outline-secondary" href="{{ rules_url }}">
+                        <i class="ti ti-list" aria-hidden="true"></i>
+                        <span>{{ __('Manage cleaning rules', domain) }}</span>
+                    </a>
+                </div>
+            </div>
+
+            {% if can_edit %}
+                <div class="card-footer">
+                    <button type="submit" name="update" value="1" class="btn btn-primary">
+                        <i class="ti ti-device-floppy" aria-hidden="true"></i>
+                        <span>{{ _x('button', 'Save') }}</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </form>
+</div>

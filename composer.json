@@ -1,0 +1,25 @@
+{
+    "name": "omnicom-digital/emailticketcleaner",
+    "description": "GLPI 11 plugin that cleans emails imported by the mail collector (signatures, quoted threads, formatting) before they become tickets or follow-ups.",
+    "type": "glpi-plugin",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "OMNICOM s.r.o."
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "GlpiPlugin\\Emailticketcleaner\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.99"
+        },
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<ruleset name="emailticketcleaner">
+    <description>PSR-12 for the Email Ticket Cleaner plugin</description>
+    <file>.</file>
+    <exclude-pattern>/vendor/</exclude-pattern>
+    <!-- tests/ hold multi-class stub harnesses and are not shipped -->
+    <exclude-pattern>/tests/</exclude-pattern>
+    <arg name="extensions" value="php"/>
+    <arg value="p"/>
+    <rule ref="PSR12">
+        <!-- GLPI entry points (setup.php, hook.php, front/*.php) are procedural by design;
+             src/Compat/RuleBase.php only aliases the version-specific class. -->
+        <exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+    </rule>
+    <!-- PER-CS (php-cs-fixer, as in GLPI core) writes empty promoted-constructor bodies as `{}`. -->
+    <rule ref="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="140"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+</ruleset>

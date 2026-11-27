@@ -1,0 +1,145 @@
+#
+msgid ""
+msgstr ""
+"Language: en_GB\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: front/config.form.php:32
+msgid "Settings saved"
+msgstr "Settings saved"
+
+#: src/Rule.php:46 templates/config.html.twig:25
+msgid "Email Ticket Cleaner"
+msgstr "Email Ticket Cleaner"
+
+#: src/Rule.php:63
+msgid "Settings"
+msgstr "Settings"
+
+#: src/Rule.php:86 src/Rule.php:139
+msgid "Regular expression"
+msgstr "Regular expression"
+
+#: src/Rule.php:92 src/Rule.php:154
+msgid "Applies to"
+msgstr "Applies to"
+
+#: src/Rule.php:98 src/Rule.php:147
+msgid "Order"
+msgstr "Order"
+
+#: src/Rule.php:126
+msgid "Message text"
+msgstr "Message text"
+
+#: src/Rule.php:127
+msgid "Ticket title"
+msgstr "Ticket title"
+
+#: src/Rule.php:220
+msgid "Invalid regular expression in rule \"%1$s\": %2$s"
+msgstr "Invalid regular expression in rule \"%1$s\": %2$s"
+
+#: src/Rule.php:241
+msgid "the expression is empty"
+msgstr "the expression is empty"
+
+#: src/Rule.php:242
+msgid "longer than %d characters"
+msgstr "longer than %d characters"
+
+#: src/Rule.php:243
+msgid "contains invalid characters"
+msgstr "contains invalid characters"
+
+#: src/Rule.php:41
+msgid "Cleaning rule"
+msgid_plural "Cleaning rules"
+msgstr[0] "Cleaning rule"
+msgstr[1] "Cleaning rules"
+
+#: templates/config.html.twig:30
+msgid ""
+"Cleans emails imported by the mail collector before they become tickets or "
+"follow-ups. Tickets and follow-ups created in GLPI, and later edits, are "
+"never changed. If cleaning fails or would leave too little text, the "
+"original email is kept."
+msgstr ""
+"Cleans emails imported by the mail collector before they become tickets or "
+"follow-ups. Tickets and follow-ups created in GLPI, and later edits, are "
+"never changed. If cleaning fails or would leave too little text, the "
+"original email is kept."
+
+#: templates/config.html.twig:33
+msgid "Features"
+msgstr "Features"
+
+#: templates/config.html.twig:34
+msgid "Remove signatures"
+msgstr "Remove signatures"
+
+#: templates/config.html.twig:35
+msgid "Remove quoted replies and forwards"
+msgstr "Remove quoted replies and forwards"
+
+#: templates/config.html.twig:37
+msgid "Cut at sign-off phrases"
+msgstr "Cut at sign-off phrases"
+
+#: templates/config.html.twig:38
+msgid "Remove formatting"
+msgstr "Remove formatting"
+
+#: templates/config.html.twig:39
+msgid "Do not save images from removed parts"
+msgstr "Do not save images from removed parts"
+
+#: templates/config.html.twig:41
+msgid "What counts as a signature or quote"
+msgstr "What counts as a signature or quote"
+
+#: templates/config.html.twig:42
+msgid "Signature markers (one per line: #id or .class)"
+msgstr "Signature markers (one per line: #id or .class)"
+
+#: templates/config.html.twig:43
+msgid "Quote markers (one per line: #id, .class or tag[attribute=value])"
+msgstr "Quote markers (one per line: #id, .class or tag[attribute=value])"
+
+#: templates/config.html.twig:45
+msgid ""
+"Sign-off phrases (one per line; the message is cut from a phrase on its own "
+"line)"
+msgstr ""
+"Sign-off phrases (one per line; the message is cut from a phrase on its own "
+"line)"
+
+#: templates/config.html.twig:47
+msgid "Safety"
+msgstr "Safety"
+
+#: templates/config.html.twig:48
+msgid "Keep the original if fewer characters of text remain"
+msgstr "Keep the original if fewer characters of text remain"
+
+#: templates/config.html.twig:50
+msgid "Regular expression rules"
+msgstr "Regular expression rules"
+
+#: templates/config.html.twig:54
+msgid "Manage cleaning rules"
+msgstr "Manage cleaning rules"
+
+#: front/config.form.php:37
+msgid "These markers are not valid and were not saved: %s"
+msgstr "These markers are not valid and were not saved: %s"
+
+#: templates/config.html.twig:36
+msgid "Remove banners and other marked blocks"
+msgstr "Remove banners and other marked blocks"
+
+#: templates/config.html.twig:44
+msgid ""
+"Blocks removed on their own (one per line, e.g. table:has(a[href*=text]))"
+msgstr ""
+"Blocks removed on their own (one per line, e.g. table:has(a[href*=text]))"
