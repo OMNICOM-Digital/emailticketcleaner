@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <name>Email Ticket Cleaner</name>
+  <key>emailticketcleaner</key>
+  <state>stable</state>
+  <logo>https://raw.githubusercontent.com/OMNICOM-Digital/mcpserver/main/oc-logo-40.png</logo>
+  <description>
+    <short>
+      <en>Cleans emails imported by the mail collector: removes signatures, logos, disclaimers, quoted replies and heavy formatting before they become tickets or follow-ups. Free alternative to Ticket Cleaner for GLPI 11.</en>
+    </short>
+    <long>
+      <en>
+**Email Ticket Cleaner** cleans every email the GLPI mail collector imports, for new tickets and for follow-ups, so the ticket timeline shows only what the sender wrote. Free and open source, by OMNICOM s.r.o.
+
+### What it removes
+- The signature and everything below it: logos, contact and social icons, legal disclaimers (Outlook, Gmail, Apple Mail and Thunderbird markers)
+- Quoted reply and forward threads
+- Text after a sign-off phrase on its own line, such as "Best regards" or "Sent from my iPhone" (editable list)
+- Text matched by your own regular-expression rules, in the message or the ticket title
+- Banners such as Microsoft 365's "You don't often get email from..." notice
+- Fonts, colours and styling; text, links, lists, tables and pasted screenshots stay
+- Logos and icons from the removed part are not saved as documents; real attachments are kept
+
+### Safe by design
+- Only imported email is cleaned; tickets and follow-ups created in GLPI, and later edits, are never changed
+- If cleaning fails or would leave too little text, the original email is kept unchanged
+- Rules only remove text; logs never contain message content
+
+### Requirements
+GLPI 11.0.11 to 11.0.x, on-premise and GLPI Network Cloud, PHP 8.2 or later. GLPI 12 support is planned.
+
+### Security updates
+Free security fixes for at least five years from each release, published as security releases with an advisory: [GitHub Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases). Security policy: [SECURITY.md](https://github.com/OMNICOM-Digital/emailticketcleaner/blob/main/SECURITY.md).
+
+Email Ticket Cleaner is a separate plugin by OMNICOM s.r.o., not a new version of the "Ticket Cleaner" plugin (GLPI 10 only).
+      </en>
+    </long>
+  </description>
+  <homepage>https://github.com/OMNICOM-Digital/emailticketcleaner</homepage>
+  <download>https://github.com/OMNICOM-Digital/emailticketcleaner/releases</download>
+  <issues>https://github.com/OMNICOM-Digital/emailticketcleaner/issues</issues>
+  <readme>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/README.md</readme>
+  <authors>
+    <author>OMNICOM s.r.o.</author>
+  </authors>
+  <versions>
+    <version>
+      <num>1.0.0</num>
+      <compatibility>~11.0.11</compatibility>
+      <download_url>https://github.com/OMNICOM-Digital/emailticketcleaner/releases/download/1.0.0/emailticketcleaner-1.0.0.zip</download_url>
+    </version>
+  </versions>
+  <langs>
+    <lang>en_GB</lang>
+  </langs>
+  <license><![CDATA[GPL v3+]]></license>
+  <tags>
+    <en>
+      <tag>Mail collector</tag>
+      <tag>Email</tag>
+      <tag>Signature</tag>
+      <tag>Helpdesk</tag>
+      <tag>Ticket Cleaner alternative</tag>
+    </en>
+  </tags>
+</root>
