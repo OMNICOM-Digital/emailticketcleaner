@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/OMNICOM-Digital/mcpserver/main/oc-icon.png" width="120" alt="OMNICOM s.r.o." />
+  <img src="logo.png" width="120" alt="Email Ticket Cleaner" />
 </p>
 
 <h1 align="center">Email Ticket Cleaner for GLPI</h1>

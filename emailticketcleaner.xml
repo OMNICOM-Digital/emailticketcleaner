@@ -3,7 +3,7 @@
   <name>Email Ticket Cleaner</name>
   <key>emailticketcleaner</key>
   <state>stable</state>
-  <logo>https://raw.githubusercontent.com/OMNICOM-Digital/mcpserver/main/oc-logo-40.png</logo>
+  <logo>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/docs/images/logo-40.png</logo>
   <description>
     <short>
       <en>Cleans emails imported by the mail collector: removes signatures, logos, disclaimers, quoted replies and heavy formatting before they become tickets or follow-ups. Free alternative to Ticket Cleaner for GLPI 11.</en>
