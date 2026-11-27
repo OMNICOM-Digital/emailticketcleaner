@@ -309,10 +309,16 @@ final class Cleaner
         return null;
     }
 
-    /** Whether the content before $node (outside it) has enough text or an image to stand alone. */
+    /**
+     * Whether anything the sender wrote (any visible text or an image) comes before $node, outside it.
+     *
+     * Deliberately not the admin's "minimum remaining characters": that threshold is the final fail-safe in
+     * ImportHook (keep the original mail). Using it here would skip the cut instead and import the mail with its
+     * signature but stripped formatting (found while preparing the 1.0.0 test round, scope item F-01).
+     */
     private function hasEnoughBefore(DOMNode $node, DOMElement $root): bool
     {
-        $min    = max(1, (int) ($this->settings[Settings::MIN_REMAINING_CHARS] ?? 1));
+        $min    = 1;
         $length = 0;
         foreach ($this->textNodes($root) as $text) {
             if (!$this->isBefore($text, $node)) {
