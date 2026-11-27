@@ -73,20 +73,7 @@ that GLPI 11 declares without, and a class redeclaring them fatals on the other 
 core `Config` instead of a class, and `Rule` extends a version-specific base selected by feature detection. 1.0.0
 declares GLPI 11 only; GLPI 12 is declared once it has passed live tests.
 
-## Tests
+## Translations
 
-`tests/` (not shipped in the release zip):
-
-- `cleaner_test.php`: cleaner fixtures shaped like real emails from each mail-client family, fail-safe cases with
-  positive twins, rule and selector cases
-- `import_hook_test.php`: hook scope, fail-safe, image pruning and settings, with stubs of the GLPI classes used
-- `class_load.php <glpi-checkout>`: loads every plugin class against the real GLPI base classes of a checkout
-
-```bash
-php tests/cleaner_test.php
-php tests/import_hook_test.php
-php tests/class_load.php /path/to/glpi
-```
-
-Translations: `python3 tools/locales.py` rebuilds `locales/emailticketcleaner.pot`, merges the `.po` files and
+`python3 tools/locales.py` rebuilds `locales/emailticketcleaner.pot`, merges the `.po` files and
 compiles the `.mo` files.
