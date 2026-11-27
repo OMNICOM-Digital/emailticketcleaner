@@ -61,6 +61,9 @@ final class Cleaner
     ];
 
     /** Removed together with their content. */
+    /** id of the block that holds new Outlook's / Outlook on the web's signature template (F-07). */
+    private const OUTLOOK_SIGNATURE_ID = 'Signature';
+
     private const DROP_TAGS = ['script', 'style', 'head', 'meta', 'title', 'link', 'object', 'embed', 'iframe', 'form'];
 
     private const BLOCK_TAGS = [
@@ -247,6 +250,9 @@ final class Cleaner
      * comes before that child is enough. Otherwise the marker is skipped and the next one is tried; the fail-safe in
      * ImportHook still guards the end result.
      *
+     * Outlook's own <div id="Signature"> block is never cut as a whole (finding F-07, glpi-demo tickets 322 and 328):
+     * a sender can type or paste into it, so the cut goes where the signature itself starts (outlookSignatureCut()).
+     *
      * @param array<string, list<string>> $lists feature name => selectors
      */
     private function cutAtEarliestMarker(DOMXPath $xpath, DOMElement $root, array $lists): bool
@@ -268,6 +274,17 @@ final class Cleaner
             if ($node->parentNode === null) {
                 continue;
             }
+            if ($feature === 'signature' && $this->isOutlookTemplate($node)) {
+                // Outlook's block can also hold what the sender typed or pasted (finding F-07): never cut it as a
+                // whole, cut where the signature itself starts (04 P6).
+                $split = $this->outlookSignatureCut($node, $root);
+                if ($split !== null) {
+                    $this->cutFrom($split, $root);
+                    $this->applied[] = 'signature';
+                    return true;
+                }
+                continue;
+            }
             if ($this->hasEnoughBefore($node, $root)) {
                 $this->cutFrom($node, $root);
                 $this->applied[] = (string) $feature;
@@ -283,6 +300,128 @@ final class Cleaner
             }
         }
         return false;
+    }
+
+    /**
+     * Outlook (new / on the web) inserts the whole signature template, starting with empty lines, as
+     * <div id="Signature">; the sender's cursor can land inside it. Other clients' markers (Gmail, Apple Mail,
+     * Thunderbird, Edison, Outlook mobile) wrap only the signature itself and start with it, so F-07 applies to
+     * this block only.
+     *
+     * @phpstan-assert-if-true DOMElement $node
+     */
+    private function isOutlookTemplate(DOMNode $node): bool
+    {
+        return $node instanceof DOMElement && $node->getAttribute('id') === self::OUTLOOK_SIGNATURE_ID;
+    }
+
+    /**
+     * Whether the signature block begins with something the sender wrote (text or an image) rather than with the
+     * empty line(s) Outlook puts at the top of its signature template (every #Signature in the client samples and
+     * on glpi-demo starts with <div><br></div>). Whitespace-only text between elements is ignored.
+     */
+    private function startsWithSenderContent(DOMElement $marker): bool
+    {
+        foreach (iterator_to_array($marker->childNodes) as $child) {
+            if ($child instanceof DOMText && self::normalisePhrase($child->data) === '') {
+                continue;
+            }
+            if ($child instanceof DOMText || $child instanceof DOMElement) {
+                return !$this->isEmptyNode($child);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * First empty line among the marker's children that follows the sender's content: the boundary between what was
+     * typed into the template's first line and the signature itself. Null when no empty line follows (the boundary
+     * is unknown, so nothing is cut).
+     */
+    private function firstEmptyLineAfterContent(DOMElement $marker): ?DOMNode
+    {
+        $seen_content = false;
+        foreach (iterator_to_array($marker->childNodes) as $child) {
+            if ($child instanceof DOMText && self::normalisePhrase($child->data) === '') {
+                continue;
+            }
+            if (!$child instanceof DOMText && !$child instanceof DOMElement) {
+                continue;
+            }
+            if (!$this->isEmptyNode($child)) {
+                $seen_content = true;
+            } elseif ($seen_content) {
+                return $child;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Where to cut inside Outlook's <div id="Signature"> block (F-07), or null to leave the block alone.
+     *
+     * 1. The block starts with sender content (the template's first empty line was typed or pasted into):
+     *    the signature card (F-04), else the first empty line after that content, if enough comes before it.
+     * 2. Otherwise the line where the signature text starts (signatureStart()), so a picture pasted above the
+     *    signature's first line stays. If nothing the sender wrote comes before it, the card (F-04) is tried.
+     */
+    private function outlookSignatureCut(DOMElement $marker, DOMElement $root): ?DOMNode
+    {
+        if ($this->startsWithSenderContent($marker)) {
+            foreach ([$this->findSignatureCard($marker), $this->firstEmptyLineAfterContent($marker)] as $candidate) {
+                if ($candidate !== null && $this->hasEnoughBefore($candidate, $root)) {
+                    return $candidate;
+                }
+            }
+        }
+        $start = $this->signatureStart($marker);
+        if ($this->hasEnoughBefore($start, $root)) {
+            return $start;
+        }
+        $card = $this->findSignatureCard($marker);
+        return ($card !== null && $this->hasEnoughBefore($card, $root)) ? $card : null;
+    }
+
+    /**
+     * The line of the block where the signature's first text is: going down from the block, the child that holds
+     * the first text, descending further only while an image comes before that text inside the child (a pasted
+     * picture sharing a container with the signature lines, glpi-demo ticket 328). Tables (signature cards) are
+     * never entered, so a card is cut whole with its logo. A block without text is cut whole.
+     */
+    private function signatureStart(DOMElement $marker): DOMNode
+    {
+        $first = null;
+        foreach ($this->textNodes($marker) as $text) {
+            if (self::normalisePhrase($text->data) !== '') {
+                $first = $text;
+                break;
+            }
+        }
+        if ($first === null) {
+            return $marker;
+        }
+        $container = $marker;
+        for ($depth = 0; $depth < 10; $depth++) {
+            $child = $first;
+            while ($child->parentNode !== null && !$child->parentNode->isSameNode($container)) {
+                $child = $child->parentNode;
+            }
+            if (!$child instanceof DOMElement || strtolower($child->tagName) === 'table') {
+                return $child;
+            }
+            $image_first = false;
+            foreach ($child->getElementsByTagName('img') as $image) {
+                if ($this->isBefore($image, $first)) {
+                    $image_first = true;
+                    break;
+                }
+            }
+            if (!$image_first) {
+                return $child;
+            }
+            $container = $child;
+        }
+        return $container;
     }
 
     /** First descendant of a signature marker, on the way down single wrappers, that holds a <table>. */
