@@ -11,7 +11,7 @@ Every release receives security fixes for **five years from its own release date
 
 | Release | GLPI | Released | Security support until |
 |---|---|---|---|
-| 1.0.0 | 11.0.11 to 11.0.x (GLPI 12 planned for 1.1.0) | not yet released | five years from its release date |
+| 1.0.0 | 11.0.11 to 11.0.x (GLPI 12 planned for 1.1.0) | 2026-11-27 | 2031-11-27 |
 
 A security patch (`1.x.y`) does not restart the support period of the release it fixes. Release dates are never
 changed after publication. A new major version (for example 2.0) is created only when the security model or

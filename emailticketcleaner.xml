@@ -40,6 +40,7 @@ Email Ticket Cleaner is a separate plugin by OMNICOM s.r.o., not a new version o
   <download>https://github.com/OMNICOM-Digital/emailticketcleaner/releases</download>
   <issues>https://github.com/OMNICOM-Digital/emailticketcleaner/issues</issues>
   <readme>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/README.md</readme>
+  <changelog>https://github.com/OMNICOM-Digital/emailticketcleaner/blob/main/CHANGELOG.md</changelog>
   <authors>
     <author>OMNICOM</author>
   </authors>
@@ -68,5 +69,8 @@ Email Ticket Cleaner is a separate plugin by OMNICOM s.r.o., not a new version o
     </en>
   </tags>
   <screenshots>
+    <screenshot>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/docs/images/screenshots/before-after.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/docs/images/screenshots/settings.png</screenshot>
+    <screenshot>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/docs/images/screenshots/rule.png</screenshot>
   </screenshots>
 </root>

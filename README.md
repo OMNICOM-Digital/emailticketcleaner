@@ -5,7 +5,7 @@
 <h1 align="center">Email Ticket Cleaner for GLPI</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-unreleased-C61F40" alt="Not released yet" />
+  <img src="https://img.shields.io/badge/release-1.0.0-C61F40" alt="Release 1.0.0" />
   <img src="https://img.shields.io/badge/license-GPLv3-C61F40" alt="GPLv3 license" />
   <img src="https://img.shields.io/badge/GLPI-11.0.11--11.0-C61F40" alt="GLPI 11.0.11-11.0" />
 </p>
@@ -23,9 +23,9 @@ Free and open source. Built and maintained by [OMNICOM s.r.o.](https://omnicom.d
 
 ## Download
 
-The first release (1.0.0) is in final testing. Once published, install Email Ticket Cleaner from the GLPI
-Marketplace (**Setup > Plugins > Marketplace**), or download `emailticketcleaner-X_Y_Z.zip` (for example
-`emailticketcleaner-1_0_0.zip`) from [Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases).
+Download `emailticketcleaner-X_Y_Z.zip` (currently `emailticketcleaner-1_0_0.zip`) from
+[Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases), or, once the listing is approved,
+install Email Ticket Cleaner from the GLPI Marketplace (**Setup > Plugins > Marketplace**).
 Both are free for everyone. Each release lists the SHA-256 checksum of its zip in the release notes.
 
 ## Features
@@ -87,6 +87,13 @@ Cleaning starts with the next mail-collector run. Existing tickets are not chang
 - Signatures typed by hand, or added by a central signature tool, may carry no marker. The sign-off phrases
   cover most of these.
 - Text written below a signature or a sign-off phrase is removed with it.
+- In new Outlook and Outlook on the web, the cursor can land inside the signature block. Pictures pasted there,
+  above the signature's first line, are kept; the signature is cut from its first line of text. Text typed into
+  the signature block is kept when an empty line separates it from the signature, otherwise it is taken for the
+  signature's first line and removed with it. If nothing is written above the signature block at all, the block
+  is kept (without formatting), so a message typed on its only empty line is never lost; its signature then
+  stays. A logo placed *above* the name in such a signature stays as an image; mark it "Blacklisted for import"
+  if you don't want it (see below).
 - Some mail apps attach an old signature logo without showing it in the message; GLPI then saves it as an
   attachment. Mark that logo once as "Blacklisted for import" (**Management > Documents**) and GLPI skips it.
 - GLPI business rules that test the ticket *Description* see the cleaned text.

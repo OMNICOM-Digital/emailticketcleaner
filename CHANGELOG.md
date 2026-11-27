@@ -10,14 +10,13 @@ Release history of Email Ticket Cleaner. Releases are published under [Releases]
 - **Tags** are the plain version number without a prefix (for example `1.0.0`), matching the version in `setup.php`. Release packages are named `emailticketcleaner-X_Y_Z.zip` (for example `emailticketcleaner-1_0_0.zip`).
 - Entries prefixed **Security:** fix a vulnerability or close a security gap.
 
-## Unreleased
-
-### 1.0.0 (in final testing)
+## 1.0.0 — 2026-11-27
 
 First release. For GLPI 11.0.11 to 11.0.x, PHP 8.2 or later.
 
 - Cleans emails imported by the mail collector, for new tickets and follow-ups; items created in GLPI, through the API or forms, and later edits are never changed
 - Signature removal: the signature and everything below it, recognised by mail-client markers (Outlook web, new and mobile, Gmail, Apple Mail, Thunderbird, Edison)
+- Outlook's signature block is cut where the signature text starts, not as a whole: screenshots pasted into the block above the signature are kept, and text typed into it is kept when an empty line or a signature card follows
 - Quoted reply and forward threads removed
 - Blocks removed on their own, such as the Microsoft 365 "You don't often get email from..." banner
 - Sign-off phrases: cut from a closing phrase on its own line; editable list with English, Norwegian, Slovak and Czech defaults and mail-app footers
