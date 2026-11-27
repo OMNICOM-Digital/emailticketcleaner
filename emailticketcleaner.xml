@@ -41,13 +41,13 @@ Email Ticket Cleaner is a separate plugin by OMNICOM s.r.o., not a new version o
   <issues>https://github.com/OMNICOM-Digital/emailticketcleaner/issues</issues>
   <readme>https://raw.githubusercontent.com/OMNICOM-Digital/emailticketcleaner/main/README.md</readme>
   <authors>
-    <author>OMNICOM s.r.o.</author>
+    <author>OMNICOM</author>
   </authors>
   <versions>
     <version>
       <num>1.0.0</num>
       <compatibility>~11.0.11</compatibility>
-      <download_url>https://github.com/OMNICOM-Digital/emailticketcleaner/releases/download/1.0.0/emailticketcleaner-1.0.0.zip</download_url>
+      <download_url>https://github.com/OMNICOM-Digital/emailticketcleaner/releases/download/1.0.0/emailticketcleaner-1_0_0.zip</download_url>
     </version>
   </versions>
   <langs>
@@ -59,8 +59,14 @@ Email Ticket Cleaner is a separate plugin by OMNICOM s.r.o., not a new version o
       <tag>Mail collector</tag>
       <tag>Email</tag>
       <tag>Signature</tag>
+      <tag>Disclaimer</tag>
+      <tag>Outlook</tag>
+      <tag>Quoted reply</tag>
+      <tag>Follow-up</tag>
       <tag>Helpdesk</tag>
       <tag>Ticket Cleaner alternative</tag>
     </en>
   </tags>
+  <screenshots>
+  </screenshots>
 </root>

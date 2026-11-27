@@ -2,13 +2,12 @@
 
 Release history of Email Ticket Cleaner. Releases are published under [Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases), free for everyone.
 
-## Support line and release convention
+## Support period and release convention
 
-- **Support line:** 1.x, security support for at least five years from the latest release in the line, extended with every new release. See [SECURITY.md](SECURITY.md).
-- **Feature releases** (`1.x.0`): new features or newly supported GLPI versions (GLPI 12 is planned for 1.1.0).
-- **Patch releases** (`1.x.y`): fixes only, no new features.
-- **Security releases:** a patch release that fixes a vulnerability, published as a GitHub Release with a Security Advisory.
-- **Tags** are the plain version number without a prefix (for example `1.0.0`), matching the version in `setup.php`.
+- **Support period:** every release receives security fixes for five years from its own release date, as shown on [Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases). A security patch does not restart the period of the release it fixes. See [SECURITY.md](SECURITY.md).
+- **Feature releases** (`1.x.0`): new features, other fixes, or newly supported GLPI versions (GLPI 12 is planned for 1.1.0).
+- **Security patches** (`1.x.y`, y > 0): security fixes only, never mixed with features or other changes; each is published as a GitHub Release with a Security Advisory.
+- **Tags** are the plain version number without a prefix (for example `1.0.0`), matching the version in `setup.php`. Release packages are named `emailticketcleaner-X_Y_Z.zip` (for example `emailticketcleaner-1_0_0.zip`).
 - Entries prefixed **Security:** fix a vulnerability or close a security gap.
 
 ## Unreleased

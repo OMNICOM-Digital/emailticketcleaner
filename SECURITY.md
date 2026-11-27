@@ -6,15 +6,17 @@ Email Ticket Cleaner is published in this public repository, https://github.com/
 
 ## Supported versions
 
-Security support is defined per **release line**, not per individual release. All releases within a supported line receive security fixes.
+Every release receives security fixes for **five years from its own release date**, as shown on
+[GitHub Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases).
 
-| Line | GLPI | First published | Security support until |
+| Release | GLPI | Released | Security support until |
 |---|---|---|---|
-| 1.x | 11.0.11 to 11.0.x (GLPI 12 planned within the line) | not yet released | five years from the latest release in the line\* |
+| 1.0.0 | 11.0.11 to 11.0.x (GLPI 12 planned for 1.1.0) | not yet released | five years from its release date |
 
-\* The date is set when 1.0.0 is published on GitHub Releases and extended whenever a new release is published in the line, so that every release in the line is supported for at least five years from its own release date.
-
-Feature releases within a line (for example, support for a new GLPI version) do not start a new support period. A new line (for example 2.0) is created only when the security model or intended use changes substantially, and it receives its own support period announced in advance.
+A security patch (`1.x.y`) does not restart the support period of the release it fixes. Release dates are never
+changed after publication. A new major version (for example 2.0) is created only when the security model or
+intended use changes substantially, or when GLPI versions can no longer share one code base; releases of the
+earlier major version keep their own support periods.
 
 ## Reporting a vulnerability
 
@@ -51,8 +53,9 @@ We ask for **90** days from your report to prepare and release a fix before publ
 
 ## How security fixes are delivered
 
-- Security fixes are issued as **separate security releases** (patch releases such as `1.x.y`), distinguishable from feature updates in the changelog (entries marked `Security:`).
-- Security fixes apply to **every release in the supported line**, not only the latest one.
+- Security fixes are issued as **separate security releases** (patch releases such as `1.x.y`) that contain security fixes only, distinguishable from feature updates in the changelog (entries marked `Security:`).
+- A fix is released as a patch of the current 1.x version, and users of older releases are asked to upgrade to it. Where upgrading is not possible for a release that is still within its support period (for example because of GLPI version constraints), we decide per advisory whether that release receives its own patch.
+- Every security fix is tested on all GLPI versions the plugin supports.
 - **Security fixes are free of charge** and available to everyone.
 - Each fix is accompanied by an advisory describing the issue, affected versions, severity, and the action users should take.
 
@@ -69,8 +72,8 @@ Out of scope: vulnerabilities in GLPI core itself (please report these to the GL
 ## Our commitments
 
 - We document, triage and remediate reported vulnerabilities and track them to closure.
-- We notify the competent authorities where required, including reporting actively exploited vulnerabilities and severe incidents under the EU Cyber Resilience Act (Regulation (EU) 2024/2847).
-- We cooperate with market surveillance authorities on request.
+- We notify the competent authorities where the law requires it.
+- We cooperate with competent authorities on request.
 - We share information about fixed vulnerabilities with affected users and, where relevant, the wider open-source community.
 
 ## Safe harbour

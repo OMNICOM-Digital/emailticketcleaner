@@ -5,9 +5,9 @@
 <h1 align="center">Email Ticket Cleaner for GLPI</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/release-unreleased-13A688" alt="Not released yet" />
-  <img src="https://img.shields.io/badge/license-GPLv3-13A688" alt="GPLv3 license" />
-  <img src="https://img.shields.io/badge/GLPI-11.0.11--11.0-13A688" alt="GLPI 11.0.11-11.0" />
+  <img src="https://img.shields.io/badge/release-unreleased-C61F40" alt="Not released yet" />
+  <img src="https://img.shields.io/badge/license-GPLv3-C61F40" alt="GPLv3 license" />
+  <img src="https://img.shields.io/badge/GLPI-11.0.11--11.0-C61F40" alt="GLPI 11.0.11-11.0" />
 </p>
 
 **Clean emails before they become GLPI tickets.**
@@ -24,9 +24,9 @@ Free and open source. Built and maintained by [OMNICOM s.r.o.](https://omnicom.d
 ## Download
 
 The first release (1.0.0) is in final testing. Once published, install Email Ticket Cleaner from the GLPI
-Marketplace (**Setup > Plugins > Marketplace**), or download `emailticketcleaner-<version>.zip` from
-[Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases). Both are free for everyone. Each
-release lists SHA-256 checksums in `SHA256SUMS`.
+Marketplace (**Setup > Plugins > Marketplace**), or download `emailticketcleaner-X_Y_Z.zip` (for example
+`emailticketcleaner-1_0_0.zip`) from [Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases).
+Both are free for everyone. Each release lists the SHA-256 checksum of its zip in the release notes.
 
 ## Features
 
@@ -54,8 +54,8 @@ release lists SHA-256 checksums in `SHA256SUMS`.
    **Manual:** extract the zip from [Releases](https://github.com/OMNICOM-Digital/emailticketcleaner/releases)
    into `<glpi>/plugins/` (the folder must be named `emailticketcleaner`), then install and enable the plugin in
    **Setup > Plugins**.
-2. Review the settings (**Setup > Plugins > Email Ticket Cleaner**, gear icon), especially the default sign-off
-   list.
+2. Review the settings (**Setup > Plugins**, the plugin's configure link, or the sliders icon on
+   **Setup > Email Ticket Cleaner**), especially the default sign-off list.
 3. Optional: add your own rules in **Setup > Email Ticket Cleaner**.
 
 Cleaning starts with the next mail-collector run. Existing tickets are not changed.

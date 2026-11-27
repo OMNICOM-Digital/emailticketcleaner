@@ -1,4 +1,4 @@
 /vendor/
 .php-cs-fixer.cache
 *.eml
-/tests/private/
+/tests/

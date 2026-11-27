@@ -70,7 +70,7 @@ function plugin_version_emailticketcleaner(): array
     return [
         'name'         => 'Email Ticket Cleaner',
         'version'      => PLUGIN_EMAILTICKETCLEANER_VERSION,
-        'author'       => 'OMNICOM s.r.o.',
+        'author'       => 'OMNICOM',
         'license'      => 'GPL-3.0-or-later',
         'homepage'     => 'https://github.com/OMNICOM-Digital/emailticketcleaner',
         'requirements' => [
